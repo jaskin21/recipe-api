@@ -97,3 +97,19 @@ export const listOfUsers = async (req, res) => {
     );
   }
 };
+
+// delete any user; requirement must be admin
+export const deleteUser = async (req, res) => {
+  try {
+    const deleteUser = await User.findByIdAndRemove({
+      _id: req.params.userId,
+    });
+    return responseFactory(res, 200, { deleteUser });
+  } catch (error) {
+    return errorResponseFactory(
+      res,
+      400,
+      error?.message ?? 'Something went wrong, please try again'
+    );
+  }
+};

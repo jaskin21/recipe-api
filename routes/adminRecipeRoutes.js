@@ -2,6 +2,7 @@ import express from 'express';
 import {
   createAdmin,
   deleteAnyRecipe,
+  deleteUser,
   listOfUsers,
   updateRecipe,
 } from '../controller/adminRecipeController.js';
@@ -17,5 +18,7 @@ router.patch('/update/:recipeId', authUser, authAdmin, updateRecipe);
 router.delete('/delete/:recipeId', authUser, authAdmin, deleteAnyRecipe);
 // Create Admin
 router.post('/createAdmin', authUser, authAdmin, createAdmin);
+// Delete User
+router.delete('/deleteUser/:userId', authUser, authAdmin, deleteUser);
 
 export default router;
