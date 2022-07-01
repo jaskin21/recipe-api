@@ -24,6 +24,21 @@ export const listOfRecipes = async (req, res) => {
   }
 };
 
+// get all recipes
+export const viewRecipe = async (req, res) => {
+  try {
+    const viewItems = await Recipe.find({ _id: req.params.recipeId });
+
+    return responseFactory(res, 200, { viewItems });
+  } catch (error) {
+    return errorResponseFactory(
+      res,
+      400,
+      error?.message ?? 'Something went wrong, please try again'
+    );
+  }
+};
+
 // create user personal Recipe
 export const addRecipe = async (req, res) => {
   //VALIDATE THE DATA BEFORE USER
