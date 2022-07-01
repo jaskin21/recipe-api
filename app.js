@@ -11,6 +11,7 @@ import connectDb from './connect-db.js';
 import authRouter from './routes/authRoutes.js';
 import recipeRouter from './routes/recipeRoutes.js';
 import adminRecipeRouter from './routes/adminRecipeRoutes.js';
+import userDashboardRouter from './routes/userDashboardRoutes.js';
 
 const app = express();
 
@@ -26,6 +27,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Authentication
 app.use('/auth', authRouter);
+// dashboard
+app.use('/dashboard', userDashboardRouter);
 // Routes for Recipe related
 app.use('/recipes', recipeRouter);
 // Routes for Recipe Admin related
