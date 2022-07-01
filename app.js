@@ -10,6 +10,7 @@ import connectDb from './connect-db.js';
 
 import authRouter from './routes/authRoutes.js';
 import recipeRouter from './routes/recipeRoutes.js';
+import adminRecipeRouter from './routes/adminRecipeRoutes.js';
 
 const app = express();
 
@@ -27,6 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/auth', authRouter);
 // Routes for Recipe related
 app.use('/recipes', recipeRouter);
+// Routes for Recipe Admin related
+app.use('/admin', adminRecipeRouter);
 
 app.use(function (req, res, next) {
   res

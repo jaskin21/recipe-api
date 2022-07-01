@@ -24,11 +24,10 @@ export const listOfRecipes = async (req, res) => {
   }
 };
 
-// get all recipes
+// view specific recipe
 export const viewRecipe = async (req, res) => {
   try {
     const viewItems = await Recipe.find({ _id: req.params.recipeId });
-
     return responseFactory(res, 200, { viewItems });
   } catch (error) {
     return errorResponseFactory(
