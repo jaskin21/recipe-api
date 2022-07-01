@@ -33,7 +33,11 @@ export const registerUser = async (req, res) => {
   }
 
   // Create a new user
-  const userDetails = new User(req.body);
+  const userDetails = new User({
+    username: req.body.username,
+    email: req.body.email,
+    password: req.body.password,
+  });
 
   try {
     await userDetails.save();
