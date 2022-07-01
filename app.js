@@ -23,7 +23,9 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+// Authentication
 app.use('/auth', authRouter);
+// Routes for Recipe related
 app.use('/recipes', recipeRouter);
 
 app.use(function (req, res, next) {

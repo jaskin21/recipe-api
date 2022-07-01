@@ -3,7 +3,28 @@ import errorResponseFactory from '../utils/errorResponseFactory.js';
 import responseFactory, { responseStatus } from '../utils/responseFactory.js';
 import { recipeValidation } from '../validation/recipeValidation.js';
 
-// create question
+// get all recipes
+export const listOfRecipes = async (req, res) => {
+  try {
+    const items = await Recipe
+      .find
+      // { respondent: req.user.id,}
+      ()
+      .sort({
+        date: -1,
+      });
+
+    return responseFactory(res, 200, { items });
+  } catch (error) {
+    return errorResponseFactory(
+      res,
+      400,
+      error?.message ?? 'Something went wrong, please try again'
+    );
+  }
+};
+
+// create user personal Recipe
 export const addRecipe = async (req, res) => {
   //VALIDATE THE DATA BEFORE USER
   const { error } = recipeValidation(req.body);
