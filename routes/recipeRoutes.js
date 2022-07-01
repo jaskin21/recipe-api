@@ -4,14 +4,15 @@ import {
   listOfRecipes,
   viewRecipe,
 } from '../controller/recipeController.js';
+import { authUser } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
 // Get all Recipes
-router.get('/', listOfRecipes);
+router.get('/', authUser, listOfRecipes);
 // view specific Recipe
-router.get('/:recipeId', viewRecipe);
+router.get('/:recipeId', authUser, viewRecipe);
 // Add your own Recipe
-router.post('/:myId', addRecipe);
+router.post('/:myId', authUser, addRecipe);
 
 export default router;

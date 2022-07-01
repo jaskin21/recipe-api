@@ -4,14 +4,15 @@ import {
   listOfUsers,
   updateRecipe,
 } from '../controller/adminRecipeController.js';
+import { authAdmin, authUser } from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
 // view all users
-router.get('/users', listOfUsers);
+router.get('/users', authUser, authAdmin, listOfUsers);
 // Edit any Recipe
-router.patch('/update/:recipeId', updateRecipe);
+router.patch('/update/:recipeId', authUser, authAdmin, updateRecipe);
 // Delete any Recipe
-router.delete('/delete/:recipeId', deleteAnyRecipe);
+router.delete('/delete/:recipeId', authUser, authAdmin, deleteAnyRecipe);
 
 export default router;
