@@ -6,13 +6,9 @@ import { recipeValidation } from '../validation/recipeValidation.js';
 // get all recipes
 export const listOfRecipes = async (req, res) => {
   try {
-    const items = await Recipe
-      .find
-      // { respondent: req.user.id,}
-      ()
-      .sort({
-        date: -1,
-      });
+    const items = await Recipe.find().sort({
+      date: -1,
+    });
 
     return responseFactory(res, 200, { items });
   } catch (error) {
